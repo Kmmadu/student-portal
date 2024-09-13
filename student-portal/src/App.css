@@ -1,0 +1,267 @@
+/* General styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* Header Section */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 16px;
+  color: black;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.logo {
+  height: 35px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+.nav a:hover {
+  color: #007bff;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  background-image: url('/public/welcome_image.jpg');
+  padding: 60px 20px;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.overlay h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Welcome Section Styles */
+.welcome-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.welcome-section h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.welcome-section .grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.welcome-section .text-box {
+  flex: 1;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #524c4c;
+}
+
+.welcome-section .image-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.welcome-section .image-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-height: 100%;
+  /* Ensure the image fits within the parent container */
+}
+
+
+/* Explore Section Styles */
+.explore-section {
+  background-color: #f0f0f0;
+  /* Grey background */
+  padding: 40px 0;
+}
+
+.explore-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.explore-section .text-box {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.explore-section .image-container {
+  display: flex;
+  justify-content: space-between;
+  /* Ensure images are evenly spaced */
+  gap: 10px;
+  /* Reduce gap between boxes */
+  flex-wrap: wrap;
+}
+
+.explore-section .explore-box {
+  background-color: white;
+  border-radius: 4px;
+  padding: 20px;
+  width: calc(20% - 10px);
+  /* Four items per row with reduced gap */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center items horizontally */
+  justify-content: space-between;
+  /* Ensure the button is at the bottom */
+}
+
+.explore-section .explore-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.explore-section .explore-box h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.explore-section .explore-box p.service-description {
+  font-size: 1em;
+  color: #666;
+  display: block;
+  /* Show paragraphs by default on desktop */
+}
+
+.explore-section .read-more-link {
+  color: black;
+  cursor: pointer;
+  display: none;
+  /* Hide by default on desktop */
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.read-more-link::after {
+  content: ' ➔';
+}
+
+/* "Why Choose Us" Section Styles */
+.why-choose-us .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.why-choose-us .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.why-choose-us .info-box {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.why-choose-us .info-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.why-choose-us .info-box h3 {
+  margin-top: 15px;
+  font-size: 1.5em;
+}
+
+.why-choose-us .info-box p {
+  font-size: 1em;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* FAQ Section */
+.info-section {
+  padding: 50px 20px;
+  background-color: white;
+}
+
+.info-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.info-box {
+  background-color: #f0f0f0;
+}
+
+.newsletter .container form input,
+.but {
+  padding: 10px;
+}
+
+.but {
+  background-color: #007bff;
+  outline: none;
+  border: 0;
+  color: #fff;
+
+}
