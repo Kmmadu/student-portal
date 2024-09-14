@@ -44,24 +44,30 @@ def signup():
 def login():
     data = request.get_json()
 
-    # Get email and password from request
     email = data.get('email')
     password = data.get('password')
 
-    # Validate fields
     if not email or not password:
         return jsonify({'error': 'Email and password are required.'}), 400
 
-    # Check if user exists
     user = mongo.db.users.find_one({'email': email})
     if not user:
         return jsonify({'error': 'User not found.'}), 404
 
-    # Check password
     if not check_password_hash(user['password'], password):
         return jsonify({'error': 'Invalid password.'}), 401
 
-    return jsonify({'message': 'Logged in successfully!', 'user': user['fname']}), 200
+    # Return the user's name, email and ID on successful login
+    return jsonify({
+        'message': 'Logged in successfully!',
+        'user': {
+            'id': str(user['_id']),  # Send user ID
+            'fname': user['fname'],
+            'email': user['email']
+        }
+    }), 200
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

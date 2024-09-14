@@ -1,0 +1,123 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';  
+import './Prostyle.css'; 
+
+function Profile({ userId, userName, userEmail }){
+  const [notifications, setNotifications] = useState(0);  
+  const [user, setUser] = useState({
+    fullname: '',
+    email: '',
+    address: {
+      name: '',
+      location: '',
+      phone: ''
+    }
+  });
+  const [isEditing, setIsEditing] = useState(false);  
+  const [addressForm, setAddressForm] = useState(user.address);  
+  const navigate = useNavigate();  
+
+  // Fetch user data from the backend
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/profile');
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+          setAddressForm(userData.address);  // Initialize form with fetched data
+        } else {
+          console.error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handleLogout = () => {
+    console.log("User logged out");
+    setUser(null);
+    navigate('/signin');  
+  };
+
+  const handleEditAddress = (e) => {
+    e.preventDefault();
+    console.log("Updating address with:", addressForm);
+    setUser((prevUser) => ({
+      ...prevUser,
+      address: addressForm  
+    }));
+    setIsEditing(false);  
+  };
+
+  return (
+    <div className="profile-container">
+      <aside className="sidebar">
+        <div className="sidebar-header">
+          <h2>My Account</h2>
+        </div>
+        <ul className="sidebar-menu">
+          <li>Orders</li>
+          <li>Inbox <span className="notification">{notifications}</span></li>
+          <li>Chart</li>
+          <li>Saved Items</li>
+          <li>Account Management</li>
+          <li>Address Book</li>
+        </ul>
+        <div className="logout">
+          <button id="logout-btn" onClick={handleLogout}>LOGOUT</button>
+        </div>
+      </aside>
+
+      <main className="account-overview">
+        <h2>Account Overview</h2>
+        <div className="account-details">
+          <h3>Account Details</h3>
+          <p><strong>{userName}</strong></p>
+          <p>{userId}</p>
+          <p>{userEmail}</p>
+        </div>
+
+        <div className="address-book">
+          <h3>Address Book</h3>
+          {isEditing ? (
+            <form onSubmit={handleEditAddress}>
+             
+              <label>
+                Location: 
+                <input
+                  type="text"
+                  value={addressForm.location}
+                  onChange={(e) => setAddressForm({ ...addressForm, location: e.target.value })}
+                />
+              </label>
+              <label>
+                Phone number: 
+                <input
+                  type="text"
+                  value={addressForm.phone}
+                  onChange={(e) => setAddressForm({ ...addressForm, phone: e.target.value })}
+                />
+              </label>
+              <button type="submit">Save</button>
+              <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+            </form>
+          ) : (
+            <>
+              <p><strong>Name: </strong>{userName}</p>
+              <p>Your default address: {user.address.location}</p>
+              {/* <p>Location: {user.address.location}</p> */}
+              <p>Phone number: {user.address.phone}</p>
+              <button className="edit-address" onClick={() => setIsEditing(true)}>Edit</button>
+            </>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default Profile;

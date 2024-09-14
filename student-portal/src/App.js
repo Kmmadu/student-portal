@@ -8,7 +8,11 @@ import './App.css';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);     
+  const [userName, setUserName] = useState('');  
+  const [userEmail, setUserEmail] = useState('');   
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -51,9 +55,14 @@ function App() {
         {/* Define Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn setIsLoggedIn={setIsLoggedIn} />} />  
+          {/* Pass setUserId and setUserName to SignIn component */}
+          <Route 
+            path="/signin" 
+            element={<SignIn setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} setUserName={setUserName} setUserEmail={setUserEmail} />} 
+          />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/profile" element={<Profile />} />  
+          {/* Pass userId and userName to Profile component */}
+          <Route path="/profile" element={<Profile userId={userId} userName={userName} userEmail={userEmail} />} />  
         </Routes>
       </div>
     </Router>
