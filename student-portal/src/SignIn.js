@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignIn.css';
 
-function SignIn({ setIsLoggedIn }) {
+function SignIn({ setIsLoggedIn, setUserId, setUserName, setUserEmail }) { 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -39,7 +39,10 @@ function SignIn({ setIsLoggedIn }) {
           setErrors({ form: data.error });
         } else {
           setIsLoggedIn(true);  
-          navigate('/profile'); 
+          setUserId(data.user.id);  
+          setUserName(data.user.fname);  
+          setUserEmail(data.user.email)
+          navigate('/profile');  
         }
       } catch (error) {
         console.error('Error during login:', error);
