@@ -73,3 +73,13 @@
     color: #007bff;
     text-decoration: none;
 }
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
