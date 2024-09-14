@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './Home';
-import './App.css';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import Profile from './Profile';  
+import './App.css';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -26,9 +28,18 @@ function App() {
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Shop</Link>
             <Link to="/" onClick={() => setIsMenuOpen(false)}>FAQs</Link>
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Community</Link>
-            <Link to="/signin" onClick={() => setIsMenuOpen(false)}>Log In</Link>
-            <Link to="/signup" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
+            
+            {/* Checking login status */}
+            {isLoggedIn ? (
+              <Link to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
+            ) : (
+              <>
+                <Link to="/signin" onClick={() => setIsMenuOpen(false)}>Log In</Link>
+                <Link to="/signup" onClick={() => setIsMenuOpen(false)}>Sign Up</Link>
+              </>
+            )}
           </nav>
+
           {/* Hamburger Menu Button */}
           <div className="menu-icon" onClick={toggleMenu}>
             <div className="bar"></div>
@@ -40,8 +51,9 @@ function App() {
         {/* Define Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn setIsLoggedIn={setIsLoggedIn} />} />  
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />  
         </Routes>
       </div>
     </Router>
