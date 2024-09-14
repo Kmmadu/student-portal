@@ -120,6 +120,23 @@ body {
   /* Ensure the image fits within the parent container */
 }
 
+@media (max-width: 768px) {
+  .welcome-section .container {
+    flex-direction: column;
+  }
+
+  .image-box img {
+    display: none;
+  }
+
+  .welcome-section .grid {
+    flex-direction: column;
+  }
+
+  .welcome-section h1 {
+    text-align: center;
+  }
+}
 
 /* Explore Section Styles */
 .explore-section {
@@ -197,6 +214,24 @@ body {
   content: ' ➔';
 }
 
+@media (max-width: 768px) {
+  .explore-section .image-container {
+    justify-content: center;
+  }
+
+  .explore-section .explore-box {
+    width: calc(90% - 10px);
+    /* Make the boxes wider on mobile */
+    margin-bottom: 20px;
+    /* Add space between rows */
+  }
+
+  .explore-section .read-more-link {
+    display: block;
+    /* Show "Read more" link on mobile */
+  }
+}
+
 /* "Why Choose Us" Section Styles */
 .why-choose-us .container {
   max-width: 1200px;
@@ -264,4 +299,61 @@ body {
   border: 0;
   color: #fff;
 
+}
+
+@media (max-width: 768px) {
+  .info-section .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-box {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Hamburger Menu */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  .header {
+    justify-content: space-between;
+  }
 }
