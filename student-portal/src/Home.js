@@ -25,7 +25,7 @@ function Home() {
         </div>
       </section>
       {/* Explore Section  */}
-      <section class="explore-section">
+      <section class="explore-section" id='explore-services'>
         <div class="container">
           <div class="text-box">
             <h1>Explore Our Services</h1>

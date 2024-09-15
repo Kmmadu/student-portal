@@ -37,10 +37,30 @@ function Profile({ userId, userName, userEmail }) {
     fetchUserData();  // Fetch the data
   }, [userId]);  // Fetch data every time userId changes
 
+  // Handle Logout
   const handleLogout = () => {
     console.log("User logged out");
+
+    // Check if token exists before removing it
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // Remove the token from localStorage
+      localStorage.removeItem('authToken');
+      console.log("Token removed:", localStorage.getItem('authToken'));  // Should print `null`
+    } else {
+      console.log("No token found in localStorage.");
+    }
+
+    // Clear user-related state
     setUser(null);
-    navigate('/signin');  
+    setNotifications(0);
+    setAddressForm({
+      location: '',
+      phone: ''
+    });
+
+    // Redirect to the login page
+    navigate('/signin');
   };
 
   const handleEditAddress = async (e) => {

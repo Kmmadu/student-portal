@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import Home from './Home';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Profile from './Profile';  
+import Shop from './Shop';
 import './App.css';
 
 function App() {
@@ -28,9 +30,9 @@ function App() {
           </div>
           <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Accommodations</Link>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>Services</Link>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>FAQs</Link>
+            <HashLink to="/#explore-services" onClick={() => setIsMenuOpen(false)}>Services</HashLink>
+            <Link to="/buy-and-sell" onClick={() => setIsMenuOpen(false)}>Shop</Link>
+            <HashLink to="/#info-section" onClick={() => setIsMenuOpen(false)}>FAQs</HashLink>
             <Link to="/" onClick={() => setIsMenuOpen(false)}>Community</Link>
             
             {/* Checking login status */}
@@ -61,6 +63,7 @@ function App() {
             element={<SignIn setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} setUserName={setUserName} setUserEmail={setUserEmail} />} 
           />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/buy-and-sell" element={<Shop />} />
           {/* Pass userId and userName to Profile component */}
           <Route path="/profile" element={<Profile userId={userId} userName={userName} userEmail={userEmail} />} />  
         </Routes>
