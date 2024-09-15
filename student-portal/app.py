@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
+from bson import ObjectId
 
 app = Flask(__name__)
 CORS(app)
@@ -68,6 +69,45 @@ def login():
     }), 200
 
 
+# updating user address
+@app.route('/update_address/<user_id>', methods=['PUT'])
+def update_address(user_id):
+    data = request.get_json()
+
+    # Extract address details from the request body
+    location = data.get('location')
+    phone = data.get('phone')
+
+    if not location or not phone:
+        return jsonify({'error': 'Location and phone are required'}), 400
+
+    # Update the user's address in the database
+    mongo.db.users.update_one(
+        {'_id': ObjectId(user_id)},
+        {'$set': {'address.location': location, 'address.phone': phone}}
+    )
+
+    return jsonify({'message': 'Address updated successfully!'}), 200
+
+# profile route
+@app.route('/profile/<user_id>', methods=['GET'])
+def get_profile(user_id):
+    try:
+        user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
+        if not user:
+            return jsonify({'error': 'User not found.'}), 404
+        
+        # Return the user profile data, including address
+        return jsonify({
+            'fullname': user['fname'],
+            'email': user['email'],
+            'address': user.get('address', {
+                'location': '',
+                'phone': ''
+            })
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

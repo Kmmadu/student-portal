@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  
 import './Prostyle.css'; 
 
-function Profile({ userId, userName, userEmail }){
+function Profile({ userId, userName, userEmail }) {
   const [notifications, setNotifications] = useState(0);  
   const [user, setUser] = useState({
     fullname: '',
@@ -17,15 +17,15 @@ function Profile({ userId, userName, userEmail }){
   const [addressForm, setAddressForm] = useState(user.address);  
   const navigate = useNavigate();  
 
-  // Fetch user data from the backend
+  // Fetch user data from the backend every time the component is rendered
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/profile');
+        const response = await fetch(`http://127.0.0.1:5000/profile/${userId}`);  // Fetch user data based on userId
         if (response.ok) {
           const userData = await response.json();
-          setUser(userData);
-          setAddressForm(userData.address);  // Initialize form with fetched data
+          setUser(userData);  // Set user data in state
+          setAddressForm(userData.address);  // Set address in the form
         } else {
           console.error('Failed to fetch user data');
         }
@@ -34,8 +34,8 @@ function Profile({ userId, userName, userEmail }){
       }
     };
 
-    fetchUserData();
-  }, []);
+    fetchUserData();  // Fetch the data
+  }, [userId]);  // Fetch data every time userId changes
 
   const handleLogout = () => {
     console.log("User logged out");
@@ -43,14 +43,32 @@ function Profile({ userId, userName, userEmail }){
     navigate('/signin');  
   };
 
-  const handleEditAddress = (e) => {
+  const handleEditAddress = async (e) => {
     e.preventDefault();
-    console.log("Updating address with:", addressForm);
-    setUser((prevUser) => ({
-      ...prevUser,
-      address: addressForm  
-    }));
-    setIsEditing(false);  
+    try {
+      // Send the updated address to the backend
+      const response = await fetch(`http://127.0.0.1:5000/update_address/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(addressForm),  
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log(result.message);  
+        setUser((prevUser) => ({
+          ...prevUser,
+          address: addressForm 
+        }));
+        setIsEditing(false);  
+      } else {
+        console.error('Failed to update address');
+      }
+    } catch (error) {
+      console.error('Error updating address:', error);
+    }
   };
 
   return (
@@ -85,7 +103,6 @@ function Profile({ userId, userName, userEmail }){
           <h3>Address Book</h3>
           {isEditing ? (
             <form onSubmit={handleEditAddress}>
-             
               <label>
                 Location: 
                 <input
@@ -109,7 +126,6 @@ function Profile({ userId, userName, userEmail }){
             <>
               <p><strong>Name: </strong>{userName}</p>
               <p>Your default address: {user.address.location}</p>
-              {/* <p>Location: {user.address.location}</p> */}
               <p>Phone number: {user.address.phone}</p>
               <button className="edit-address" onClick={() => setIsEditing(true)}>Edit</button>
             </>
