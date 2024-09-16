@@ -7,14 +7,29 @@
     <link rel="stylesheet" href="accommodation.css">
 </head>
 <body>
-    <!-- Accommodation Filters -->
+
+    <!-- Search Bar -->
+    <section class="search-bar">
+        <input type="text" placeholder="Search for accommodation..." id="search-input">
+        <button type="submit" id="search-btn">Search</button>
+    </section>
+
+    <!-- Accommodation Filters with Images -->
     <section class="accommodation-filter">
         <h1>Find Your Perfect Accommodation</h1>
         <div class="filter-options">
-            <button class="filter-btn" onclick="filterSelection('all')">All</button>
-            <button class="filter-btn" onclick="filterSelection('flat')">Flat</button>
-            <button class="filter-btn" onclick="filterSelection('single-room')">Single Room</button>
-            <button class="filter-btn" onclick="filterSelection('selfcon')">Selfcon</button>
+            <button class="filter-btn" onclick="filterSelection('all')">
+                <img src="images/all.jpg" alt="All" class="category-icon">All
+            </button>
+            <button class="filter-btn" onclick="filterSelection('flat')">
+                <img src="images/flat1.jpg" alt="Flat" class="category-icon">Flat
+            </button>
+            <button class="filter-btn" onclick="filterSelection('single-room')">
+                <img src="images/single-room1.jpg" alt="Single Room" class="category-icon">Single Room
+            </button>
+            <button class="filter-btn" onclick="filterSelection('selfcon')">
+                <img src="images/selfcon1.jpg" alt="Selfcon" class="category-icon">Selfcon
+            </button>
         </div>
     </section>
 
@@ -47,36 +62,6 @@
                 <p>Location: Downtown, 7 mins to Campus</p>
                 <p>Price: $450/month</p>
                 <p class="type">Selfcon</p>
-            </div>
-        </div>
-
-        <div class="listing selfcon">
-            <img src="images/selfcon1.jpg" alt="Selfcon Image">
-            <div class="listing-details">
-                <h2>Self-contained Apartment</h2>
-                <p>Location: Downtown, 7 mins to Campus</p>
-                <p>Price: $450/month</p>
-                <p class="type">Selfcon</p>
-            </div>
-        </div>
-
-        <div class="listing single-room"></div>
-            <img src="images/single-room1.jpg" alt="Single Room Image">
-            <div class="listing-details">
-                <h2>Single Room</h2>
-                <p>Location: Suburb, 10 mins to Campus</p>
-                <p>Price: $300/month</p>
-                <p class="type">Single Room</p>
-            </div>
-        </div>
-
-        <div class="listing single-room"></div>
-            <img src="images/single-room1.jpg" alt="Single Room Image">
-            <div class="listing-details">
-                <h2>Single Room</h2>
-                <p>Location: Suburb, 10 mins to Campus</p>
-                <p>Price: $300/month</p>
-                <p class="type">Single Room</p>
             </div>
         </div>
     </section>
