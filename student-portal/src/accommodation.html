@@ -8,6 +8,11 @@
 </head>
 <body>
 
+    <!-- Accommodation Title -->
+    <section class="accommodation-title">
+        <h1>Find Your Perfect Accommodation</h1>
+    </section>
+
     <!-- Search Bar -->
     <section class="search-bar">
         <input type="text" placeholder="Search for accommodation..." id="search-input">
@@ -16,7 +21,6 @@
 
     <!-- Accommodation Filters with Images -->
     <section class="accommodation-filter">
-        <h1>Find Your Perfect Accommodation</h1>
         <div class="filter-options">
             <button class="filter-btn" onclick="filterSelection('all')">
                 <img src="images/all.jpg" alt="All" class="category-icon">All
@@ -34,49 +38,73 @@
     </section>
 
     <!-- Accommodation Listings -->
-    <section class="accommodation-list">
-        <div class="listing flat">
-            <img src="images/flat1.jpg" alt="Flat Image">
-            <div class="listing-details">
-                <h2>2 Bedroom Flat</h2>
-                <p>Location: Downtown, 5 mins to Campus</p>
-                <p>Price: $500/month</p>
-                <p class="type">Flat</p>
-            </div>
-        </div>
-
-        <div class="listing single-room">
-            <img src="images/single-room1.jpg" alt="Single Room Image">
-            <div class="listing-details">
-                <h2>Single Room</h2>
-                <p>Location: Suburb, 10 mins to Campus</p>
-                <p>Price: $300/month</p>
-                <p class="type">Single Room</p>
-            </div>
-        </div>
-
-        <div class="listing selfcon">
-            <img src="images/selfcon1.jpg" alt="Selfcon Image">
-            <div class="listing-details">
-                <h2>Self-contained Apartment</h2>
-                <p>Location: Downtown, 7 mins to Campus</p>
-                <p>Price: $450/month</p>
-                <p class="type">Selfcon</p>
-            </div>
-        </div>
+    <section class="accommodation-list" id="accommodation-list">
+        <!-- Listings will be dynamically generated here -->
     </section>
 
     <script>
-        // JavaScript function to filter accommodation types
+        // Data for accommodation listings
+        const listings = [
+            { type: 'flat', img: 'images/flat1.jpg', title: '2 Bedroom Flat', location: 'Downtown, 5 mins to Campus', price: '$500/month' },
+            { type: 'flat', img: 'images/flat2.jpg', title: '3 Bedroom Flat', location: 'Suburb, 10 mins to Campus', price: '$700/month' },
+            { type: 'single-room', img: 'images/single-room1.jpg', title: 'Single Room', location: 'Suburb, 10 mins to Campus', price: '$300/month' },
+            { type: 'selfcon', img: 'images/selfcon1.jpg', title: 'Self-contained Apartment', location: 'Downtown, 7 mins to Campus', price: '$450/month' },
+            // Add more data for other listings here...
+        ];
+
+        // Generate 100 listings by duplicating the data
+        const generateListings = (count) => {
+            const generatedListings = [];
+            for (let i = 0; i < count; i++) {
+                const listing = listings[i % listings.length]; // Cycle through the available listings
+                generatedListings.push({
+                    type: listing.type,
+                    img: listing.img,
+                    title: `${listing.title} #${i+1}`, // Add unique number to each title
+                    location: listing.location,
+                    price: listing.price
+                });
+            }
+            return generatedListings;
+        };
+
+        const listingsData = generateListings(100); // Generate 100 listings
+
+        // Function to render the listings dynamically
+        const renderListings = () => {
+            const container = document.getElementById('accommodation-list');
+            container.innerHTML = ''; // Clear the container before adding new listings
+
+            listingsData.forEach(listing => {
+                const listingDiv = document.createElement('div');
+                listingDiv.classList.add('listing', listing.type);
+                listingDiv.innerHTML = `
+                    <img src="${listing.img}" alt="${listing.title} Image">
+                    <div class="listing-details">
+                        <h2>${listing.title}</h2>
+                        <p>Location: ${listing.location}</p>
+                        <p>Price: ${listing.price}</p>
+                        <p class="type">${listing.type}</p>
+                    </div>
+                `;
+                container.appendChild(listingDiv);
+            });
+        };
+
+        // Filter accommodation types
         function filterSelection(category) {
-            var listings = document.getElementsByClassName("listing");
-            for (var i = 0; i < listings.length; i++) {
+            const listings = document.getElementsByClassName("listing");
+            for (let i = 0; i < listings.length; i++) {
                 listings[i].style.display = "none";
                 if (category === "all" || listings[i].classList.contains(category)) {
                     listings[i].style.display = "block";
                 }
             }
         }
+
+        // Initial render of all listings
+        renderListings();
+
     </script>
 </body>
 </html>
