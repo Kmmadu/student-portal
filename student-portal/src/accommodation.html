@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation Listings</title>
+    <link rel="stylesheet" href="accommodation.css">
+</head>
+<body>
+    <!-- Accommodation Filters -->
+    <section class="accommodation-filter">
+        <h1>Find Your Perfect Accommodation</h1>
+        <div class="filter-options">
+            <button class="filter-btn" onclick="filterSelection('all')">All</button>
+            <button class="filter-btn" onclick="filterSelection('flat')">Flat</button>
+            <button class="filter-btn" onclick="filterSelection('single-room')">Single Room</button>
+            <button class="filter-btn" onclick="filterSelection('selfcon')">Selfcon</button>
+        </div>
+    </section>
+
+    <!-- Accommodation Listings -->
+    <section class="accommodation-list">
+        <div class="listing flat">
+            <img src="images/flat1.jpg" alt="Flat Image">
+            <div class="listing-details">
+                <h2>2 Bedroom Flat</h2>
+                <p>Location: Downtown, 5 mins to Campus</p>
+                <p>Price: $500/month</p>
+                <p class="type">Flat</p>
+            </div>
+        </div>
+
+        <div class="listing single-room">
+            <img src="images/single-room1.jpg" alt="Single Room Image">
+            <div class="listing-details">
+                <h2>Single Room</h2>
+                <p>Location: Suburb, 10 mins to Campus</p>
+                <p>Price: $300/month</p>
+                <p class="type">Single Room</p>
+            </div>
+        </div>
+
+        <div class="listing selfcon">
+            <img src="images/selfcon1.jpg" alt="Selfcon Image">
+            <div class="listing-details">
+                <h2>Self-contained Apartment</h2>
+                <p>Location: Downtown, 7 mins to Campus</p>
+                <p>Price: $450/month</p>
+                <p class="type">Selfcon</p>
+            </div>
+        </div>
+
+        <div class="listing selfcon">
+            <img src="images/selfcon1.jpg" alt="Selfcon Image">
+            <div class="listing-details">
+                <h2>Self-contained Apartment</h2>
+                <p>Location: Downtown, 7 mins to Campus</p>
+                <p>Price: $450/month</p>
+                <p class="type">Selfcon</p>
+            </div>
+        </div>
+
+        <div class="listing single-room"></div>
+            <img src="images/single-room1.jpg" alt="Single Room Image">
+            <div class="listing-details">
+                <h2>Single Room</h2>
+                <p>Location: Suburb, 10 mins to Campus</p>
+                <p>Price: $300/month</p>
+                <p class="type">Single Room</p>
+            </div>
+        </div>
+
+        <div class="listing single-room"></div>
+            <img src="images/single-room1.jpg" alt="Single Room Image">
+            <div class="listing-details">
+                <h2>Single Room</h2>
+                <p>Location: Suburb, 10 mins to Campus</p>
+                <p>Price: $300/month</p>
+                <p class="type">Single Room</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript function to filter accommodation types
+        function filterSelection(category) {
+            var listings = document.getElementsByClassName("listing");
+            for (var i = 0; i < listings.length; i++) {
+                listings[i].style.display = "none";
+                if (category === "all" || listings[i].classList.contains(category)) {
+                    listings[i].style.display = "block";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
