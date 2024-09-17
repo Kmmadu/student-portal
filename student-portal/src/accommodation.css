@@ -57,8 +57,14 @@ body {
     margin: 20px 0;
 }
 
+.filter-options {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    gap: 10px;
+}
+
 .filter-btn {
-    margin: 10px;
     border: none;
     background-color: #fff;
     padding: 10px 20px;
@@ -70,15 +76,7 @@ body {
 }
 
 .filter-btn:hover {
-    background-color: #f1f1f1; /* Slight hover effect */
-}
-
-.category-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    vertical-align: middle;
-    border-radius: 50%;
+    background-color: #eee;
 }
 
 /* Accommodation Listing Section */
@@ -148,10 +146,17 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .accommodation-grid {
-        grid-template-columns: repeat(2, 1fr); /* Two listings per row on mobile */
+    .filter-options {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr); /* Grid format for buttons on mobile */
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
+    .filter-btn {
+        flex: 1; /* Each button takes equal space */
+        margin-bottom: 10px;
+    }
     .listing img {
         height: 150px;
     }
