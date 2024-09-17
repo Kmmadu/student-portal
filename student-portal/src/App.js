@@ -7,6 +7,8 @@ import SignUp from './SignUp';
 import Profile from './Profile';  
 import Shop from './Shop';
 import './App.css';
+import Accommodation from './Accommodation';
+import PlaceAd from './PlaceAd';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,11 +31,11 @@ function App() {
             <img src={process.env.PUBLIC_URL + "/studenthub.png"} alt="StudentHub Logo" className="logo" />
           </div>
           <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>Accommodations</Link>
+            <Link to="/accommodations" onClick={() => setIsMenuOpen(false)}>Accommodations</Link>
             <HashLink to="/#explore-services" onClick={() => setIsMenuOpen(false)}>Services</HashLink>
             <Link to="/buy-and-sell" onClick={() => setIsMenuOpen(false)}>Shop</Link>
             <HashLink to="/#info-section" onClick={() => setIsMenuOpen(false)}>FAQs</HashLink>
-            <Link to="/" onClick={() => setIsMenuOpen(false)}>Community</Link>
+            <Link to="/placeads" onClick={() => setIsMenuOpen(false)}>Place Ad</Link>
             
             {/* Checking login status */}
             {isLoggedIn ? (
@@ -63,7 +65,9 @@ function App() {
             element={<SignIn setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} setUserName={setUserName} setUserEmail={setUserEmail} />} 
           />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/accommodations" element={<Accommodation />} />
           <Route path="/buy-and-sell" element={<Shop />} />
+          <Route path="/placeads" element={<PlaceAd />} />
           {/* Pass userId and userName to Profile component */}
           <Route path="/profile" element={<Profile userId={userId} userName={userName} userEmail={userEmail} />} />  
         </Routes>
