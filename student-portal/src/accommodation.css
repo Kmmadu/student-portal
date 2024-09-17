@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #fff; /* Set background to white */
 }
 
 /* Search Container Styles */
@@ -19,7 +19,7 @@ body {
 
 .search-container h1 {
     margin-bottom: 20px;
-    color: black;
+    color: #333; /* Darker text for better contrast */
 }
 
 .search-box {
@@ -39,7 +39,7 @@ body {
 .search-box button {
     padding: 10px 15px;
     border: none;
-    background-color: gray;
+    background-color: #808080; /* Gray button */
     color: white;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -48,15 +48,7 @@ body {
 }
 
 .search-box button:hover {
-    background-color: #333;
-}
-
-/* Accommodation Title */
-.accommodation-title h1 {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 2.5em;
-    color: #333;
+    background-color: #333; /* Darker gray on hover */
 }
 
 /* Accommodation Filter Section */
@@ -78,7 +70,7 @@ body {
 }
 
 .filter-btn:hover {
-    background-color: #eee;
+    background-color: #f1f1f1; /* Slight hover effect */
 }
 
 .category-icon {
@@ -92,7 +84,7 @@ body {
 /* Accommodation Listing Section */
 .accommodation-list {
     padding: 40px 0;
-    background-color: #f9f9f9;
+    background-color: #f4f4f4; /* Light background to separate section */
 }
 
 .accommodation-list .container {
@@ -108,7 +100,7 @@ body {
 }
 
 .listing {
-    background-color: #fff;
+    background-color: #fff; /* White listing cards */
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -139,25 +131,25 @@ body {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #333;
+    color: #333; /* Darker text for headings */
 }
 
 .listing-details p {
     font-size: 0.9em;
     margin: 5px 0;
-    color: #666;
+    color: #666; /* Subtle text color */
 }
 
 .listing-details .price {
     font-weight: bold;
     font-size: 1.1em;
-    color: #1a73e8;
+    color: #1a73e8; /* Blue price color */
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
     .accommodation-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller columns for mobile */
+        grid-template-columns: repeat(2, 1fr); /* Two listings per row on mobile */
     }
 
     .listing img {
