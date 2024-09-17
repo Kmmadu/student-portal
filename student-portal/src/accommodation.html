@@ -42,7 +42,9 @@
 
     <!-- Accommodation Listings -->
     <section class="accommodation-list" id="accommodation-list">
-        <!-- Listings will be dynamically generated here -->
+        <div class="container accommodation-grid">
+            <!-- Listings will be dynamically generated here -->
+        </div>
     </section>
 
     <script>
@@ -75,18 +77,18 @@
 
         // Function to render the listings dynamically
         const renderListings = () => {
-            const container = document.getElementById('accommodation-list');
+            const container = document.querySelector('.accommodation-grid');
             container.innerHTML = ''; // Clear the container before adding new listings
 
             listingsData.forEach(listing => {
                 const listingDiv = document.createElement('div');
                 listingDiv.classList.add('listing', listing.type);
                 listingDiv.innerHTML = `
-                    <img src="${listing.img}" alt="${listing.title} Image">
+                    <img src="${listing.img}" alt="${listing.title}">
                     <div class="listing-details">
                         <h2>${listing.title}</h2>
                         <p>Location: ${listing.location}</p>
-                        <p>Price: ${listing.price}</p>
+                        <p class="price">${listing.price}</p>
                         <p class="type">${listing.type}</p>
                     </div>
                 `;
