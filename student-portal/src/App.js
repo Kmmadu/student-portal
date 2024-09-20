@@ -16,7 +16,6 @@ function App() {
   const [userId, setUserId] = useState(null);     
   const [userName, setUserName] = useState('');  
   const [userEmail, setUserEmail] = useState('');   
-  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,9 +26,10 @@ function App() {
       <div className="App">
         {/* Header Section */}
         <header className="header">
-          <div className="logo">
+          <Link to="/" onClick={() => setIsMenuOpen(false)} className="logo">
             <img src={process.env.PUBLIC_URL + "/studenthub.png"} alt="StudentHub Logo" className="logo" />
-          </div>
+          </Link>
+          
           <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
             <Link to="/accommodations" onClick={() => setIsMenuOpen(false)}>Accommodations</Link>
             <HashLink to="/#explore-services" onClick={() => setIsMenuOpen(false)}>Services</HashLink>

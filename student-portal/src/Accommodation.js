@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Accommodation.css'; // Assuming the CSS is stored here
+import './Accommodation.css'; 
 
 const Accommodation = () => {
   const [selectedFilter, setSelectedFilter] = useState('all');
