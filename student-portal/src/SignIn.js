@@ -41,7 +41,15 @@ function SignIn({ setIsLoggedIn, setUserId, setUserName, setUserEmail }) {
           setIsLoggedIn(true);  
           setUserId(data.user.id);  
           setUserName(data.user.fname);  
-          setUserEmail(data.user.email)
+          setUserEmail(data.user.email);
+
+          // Store user data in localStorage for persistence
+          localStorage.setItem('authToken', data.token);  // Assuming you return a token
+          localStorage.setItem('userId', data.user.id);
+          localStorage.setItem('userName', data.user.fname);
+          localStorage.setItem('userEmail', data.user.email);
+
+          // Redirect to profile or previously requested page
           navigate('/profile');  
         }
       } catch (error) {

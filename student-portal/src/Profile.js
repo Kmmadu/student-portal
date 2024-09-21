@@ -102,7 +102,7 @@ function Profile({ userId, userName, userEmail }) {
           <li>Inbox <span className="notification">{notifications}</span></li>
           <li>Chart</li>
           <li>Saved Items</li>
-          <li>Account Management</li>
+          <li>My Ads</li>
           <li>Address Book</li>
         </ul>
         <div className="logout">
