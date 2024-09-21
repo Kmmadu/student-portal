@@ -9,6 +9,7 @@ import Shop from './Shop';
 import './App.css';
 import Accommodation from './Accommodation';
 import PlaceAd from './PlaceAd';
+import MyAds from './MyAds';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,6 +69,7 @@ function App() {
           <Route path="/accommodations" element={<Accommodation />} />
           <Route path="/buy-and-sell" element={<Shop />} />
           <Route path="/placeads" element={<PlaceAd />} />
+          <Route path="/myads" element={<MyAds />} />
           {/* Pass userId and userName to Profile component */}
           <Route path="/profile" element={<Profile userId={userId} userName={userName} userEmail={userEmail} />} />  
         </Routes>

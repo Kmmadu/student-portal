@@ -1,61 +1,70 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'; 
 import './Shop.css';
 
-function Shop(){
+function Shop() {
+    const navigate = useNavigate();  // Hook to navigate programmatically
+
+    // Function to handle navigation to PlaceAd page
+    const handlePlaceAdClick = () => {
+        navigate('/placeads');  // Navigate to the PlaceAd page
+    };
+
     return (
         <div className="main">
-                  {/* <!-- Search Container --> */}
-        <section class="search-container">
-            <h1>Search Products</h1>
-            <div class="search-box">
-                <input type="text" placeholder="Search for products..." />
-                <button type="submit">Search</button>
-            </div>
-        </section>
- {/* <!-- Category Icons Section --> */}
-<section class="category-section">
-    <div class="container">
-        <h2 class="category-header">Categories</h2>
-        <div class="category-icons">
-            <div class="category-icon">
-                <a href="sell.html">
-                    <img src={process.env.PUBLIC_URL + "/sell1.png"} alt="Place ads" />
-                    <p>Place ads</p>
-                </a>
-            </div>
-            <div class="category-icon">
-                <a href="phones.html">
-                    <img src={process.env.PUBLIC_URL + "/phone.png"} alt="Phones"/>
-                    <p>Phones</p>
-                </a>
-            </div>
-            <div class="category-icon">
-                <a href="electronics.html">
-                    <img src={process.env.PUBLIC_URL + "/electronic.png"} alt="Electronic"/>
-                    <p>Electronic</p>
-                </a>
-            </div>
-            <div class="category-icon">
-                <a href="fashion.html">
-                    <img src={process.env.PUBLIC_URL + "/fashion.png"} alt="Fashion"/>
-                    <p>Fashion</p>
-                </a>
-            </div>
-            <div class="category-icon">
-                <a href="furnitures.html">
-                    <img src={process.env.PUBLIC_URL + "/furnitures.png"} alt="Furnitures"/>
-                    <p>Furnitures</p>
-                </a>
-            </div>
-            <div class="category-icon">
-                <a href="vehicles.html">
-                    <img src={process.env.PUBLIC_URL + "/vehicle.png"} alt="Vehicles"/>
-                    <p>Vehicles</p>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+            {/* Search Container */}
+            <section className="search-container">
+                <h1>Search Products</h1>
+                <div className="search-box">
+                    <input type="text" placeholder="Search for products..." />
+                    <button type="submit">Search</button>
+                </div>
+            </section>
+
+            {/* Category Icons Section */}
+            <section className="category-section">
+                <div className="container">
+                    <h2 className="category-header">Categories</h2>
+                    <div className="category-icons">
+                        
+                        <div className="category-icon" onClick={handlePlaceAdClick}>
+                            <img src={process.env.PUBLIC_URL + "/sell1.png"} alt="Place ads" />
+                            <p>Place ads</p>
+                        </div>
+
+                        <div className="category-icon">
+                            <a href="phones.html">
+                                <img src={process.env.PUBLIC_URL + "/phone.png"} alt="Phones" />
+                                <p>Phones</p>
+                            </a>
+                        </div>
+                        <div className="category-icon">
+                            <a href="electronics.html">
+                                <img src={process.env.PUBLIC_URL + "/electronic.png"} alt="Electronic" />
+                                <p>Electronic</p>
+                            </a>
+                        </div>
+                        <div className="category-icon">
+                            <a href="fashion.html">
+                                <img src={process.env.PUBLIC_URL + "/fashion.png"} alt="Fashion" />
+                                <p>Fashion</p>
+                            </a>
+                        </div>
+                        <div className="category-icon">
+                            <a href="furnitures.html">
+                                <img src={process.env.PUBLIC_URL + "/furnitures.png"} alt="Furnitures" />
+                                <p>Furnitures</p>
+                            </a>
+                        </div>
+                        <div className="category-icon">
+                            <a href="vehicles.html">
+                                <img src={process.env.PUBLIC_URL + "/vehicle.png"} alt="Vehicles" />
+                                <p>Vehicles</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         {/* <!-- Trending Ads Section --> */}
 <section class="trending-section">
     <div class="container">

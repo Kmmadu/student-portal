@@ -1,0 +1,82 @@
+/* Container for My Ads page */
+.ad-body {
+    font-family: Arial, sans-serif;
+    background-color: #edf3f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.my-ads-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.my-ads-container h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Styling for the list of ads */
+.ads-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ad-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.ad-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ad-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.ad-details {
+    flex-grow: 1;
+}
+
+.ad-details p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.ad-details strong {
+    color: #333;
+}
+
+.ad-status {
+    font-weight: bold;
+    color: #ff9800;
+    /* Orange color for "Awaiting approval" */
+}
+
+/* No ads message styling */
+.my-ads-container p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #999;
+}

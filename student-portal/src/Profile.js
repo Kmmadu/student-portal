@@ -15,17 +15,16 @@ function Profile({ userId, userName, userEmail }) {
   });
   const [isEditing, setIsEditing] = useState(false);  
   const [addressForm, setAddressForm] = useState(user.address);  
-  const navigate = useNavigate();  
+  const navigate = useNavigate();  // Initialize useNavigate
 
-  // Fetch user data from the backend every time the component is rendered
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/profile/${userId}`);  // Fetch user data based on userId
+        const response = await fetch(`http://127.0.0.1:5000/profile/${userId}`); 
         if (response.ok) {
           const userData = await response.json();
-          setUser(userData);  // Set user data in state
-          setAddressForm(userData.address);  // Set address in the form
+          setUser(userData);  
+          setAddressForm(userData.address);  
         } else {
           console.error('Failed to fetch user data');
         }
@@ -34,24 +33,20 @@ function Profile({ userId, userName, userEmail }) {
       }
     };
 
-    fetchUserData();  // Fetch the data
-  }, [userId]);  // Fetch data every time userId changes
+    fetchUserData();  
+  }, [userId]);  
 
-  // Handle Logout
   const handleLogout = () => {
     console.log("User logged out");
 
-    // Check if token exists before removing it
     const token = localStorage.getItem('authToken');
     if (token) {
-      // Remove the token from localStorage
       localStorage.removeItem('authToken');
-      console.log("Token removed:", localStorage.getItem('authToken'));  // Should print `null`
+      console.log("Token removed:", localStorage.getItem('authToken')); 
     } else {
       console.log("No token found in localStorage.");
     }
 
-    // Clear user-related state
     setUser(null);
     setNotifications(0);
     setAddressForm({
@@ -59,14 +54,12 @@ function Profile({ userId, userName, userEmail }) {
       phone: ''
     });
 
-    // Redirect to the login page
     navigate('/signin');
   };
 
   const handleEditAddress = async (e) => {
     e.preventDefault();
     try {
-      // Send the updated address to the backend
       const response = await fetch(`http://127.0.0.1:5000/update_address/${userId}`, {
         method: 'PUT',
         headers: {
@@ -91,6 +84,10 @@ function Profile({ userId, userName, userEmail }) {
     }
   };
 
+  const navigateToAds = () => {
+    navigate('/myads'); 
+  };
+
   return (
     <div className="profile-container">
       <aside className="sidebar">
@@ -102,7 +99,7 @@ function Profile({ userId, userName, userEmail }) {
           <li>Inbox <span className="notification">{notifications}</span></li>
           <li>Chart</li>
           <li>Saved Items</li>
-          <li>My Ads</li>
+          <li onClick={navigateToAds} style={{ cursor: 'pointer' }}>My Ads</li> 
           <li>Address Book</li>
         </ul>
         <div className="logout">
