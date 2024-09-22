@@ -6,7 +6,8 @@ function Home() {
 
       <section className="hero">
         <div className="overlay">
-          <h1>Welcome to StudentHub</h1>
+        <h1 style={{ color: 'white' }}>Welcome to StudentHub</h1>
+
         </div>
       </section>
       <section class="welcome-section">
