@@ -5,6 +5,7 @@ import './Shop.css';
 const Shop = () => {
     const navigate = useNavigate();
     const [selectedFilter, setSelectedFilter] = useState('all');
+    const [cart, setCart] = useState([]);
 
     const products = [
         { id: 1, type: 'phones', img: process.env.PUBLIC_URL + "/Product1.jpg", name: 'Iphone X', location: 'Lagos, Nigeria', price: '₦245,000', condition: 'New' },
@@ -21,6 +22,7 @@ const Shop = () => {
         { id: 12, type: 'furniture', img: process.env.PUBLIC_URL + "/Product15.jpg", name: 'Furnitures', location: 'Abuja, Nigeria', price: '₦450,000', condition: 'New' },
     ];
 
+
     const filterSelection = (category) => {
         setSelectedFilter(category);
     };
@@ -29,9 +31,33 @@ const Shop = () => {
         (product) => selectedFilter === 'all' || product.type === selectedFilter
     );
 
+    // Navigate to PlaceAd page
     const handlePlaceAdClick = () => {
         navigate('/placeads');
     };
+
+    // Add to Cart: Check if the user is logged in first
+    const handleAddToCart = (product) => {
+        const userId = localStorage.getItem('userId');  // Check if user is logged in
+        if (userId) {
+            // Get the current cart from localStorage or initialize an empty array
+            const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Add the new product to the cart
+            const updatedCart = [...storedCart, product];
+            
+            // Update the cart in localStorage
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            
+            alert(`${product.name} has been added to your cart.`);
+            navigate('/cart');  // Navigate to Cart page
+        } else {
+            // User is not logged in, prompt them to log in
+            alert('Please log in to add items to your cart.');
+            navigate('/signin');
+        }
+    };
+    
 
     return (
         <div className="main">
@@ -44,11 +70,12 @@ const Shop = () => {
                 </div>
             </section>
 
-            
+            {/* Place ads button */}
             <div className="category-icon" onClick={handlePlaceAdClick}>
-                            <img src={process.env.PUBLIC_URL + "/sell1.png"} alt="Place ads" />
-                            <p>Place ads</p>
-                        </div><br/><br/>
+                <img src={process.env.PUBLIC_URL + "/sell1.png"} alt="Place ads" />
+                <p>Place ads</p>
+            </div><br/><br/>
+
             {/* Filter Buttons */}
             <section className="shop-filter">
                 <div className="filter-options">
@@ -72,6 +99,7 @@ const Shop = () => {
                                 <p>Location: {product.location}</p>
                                 <p className="price">{product.price}</p>
                                 <p>Condition: {product.condition}</p>
+                                <button className="add-to-cart-btn" onClick={() => handleAddToCart(product)}>Add to Cart</button>
                             </div>
                         </div>
                     ))}

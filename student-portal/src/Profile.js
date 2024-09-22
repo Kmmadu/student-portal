@@ -87,6 +87,9 @@ function Profile({ userId, userName, userEmail }) {
   const navigateToAds = () => {
     navigate('/myads'); 
   };
+  const navigateToCart = () => {
+    navigate('/cart'); 
+  };
 
   return (
     <div className="profile-container">
@@ -97,7 +100,7 @@ function Profile({ userId, userName, userEmail }) {
         <ul className="sidebar-menu">
           <li>Orders</li>
           <li>Inbox <span className="notification">{notifications}</span></li>
-          <li>Chart</li>
+          <li onClick={navigateToCart} style={{ cursor: 'pointer' }}>Cart</li> 
           <li>Saved Items</li>
           <li onClick={navigateToAds} style={{ cursor: 'pointer' }}>My Ads</li> 
           <li>Address Book</li>

@@ -11,6 +11,7 @@ import Accommodation from './Accommodation';
 import PlaceAd from './PlaceAd';
 import MyAds from './MyAds';
 import About from './About';
+import Cart from './Cart'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -72,6 +73,7 @@ function App() {
           <Route path="/placeads" element={<PlaceAd />} />
           <Route path="/myads" element={<MyAds />} />
           <Route path="/aboutus" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
           {/* Pass userId and userName to Profile component */}
           <Route path="/profile" element={<Profile userId={userId} userName={userName} userEmail={userEmail} />} />  
         </Routes>
