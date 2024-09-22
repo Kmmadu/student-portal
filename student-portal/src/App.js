@@ -10,6 +10,7 @@ import './App.css';
 import Accommodation from './Accommodation';
 import PlaceAd from './PlaceAd';
 import MyAds from './MyAds';
+import About from './About';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ function App() {
             <Link to="/accommodations" onClick={() => setIsMenuOpen(false)}>Accommodations</Link>
             <HashLink to="/#explore-services" onClick={() => setIsMenuOpen(false)}>Services</HashLink>
             <Link to="/buy-and-sell" onClick={() => setIsMenuOpen(false)}>Shop</Link>
-            <HashLink to="/#info-section" onClick={() => setIsMenuOpen(false)}>FAQs</HashLink>
+            <Link to="/aboutus" onClick={() => setIsMenuOpen(false)}>About</Link>
             <Link to="/placeads" onClick={() => setIsMenuOpen(false)}>Place Ad</Link>
             
             {/* Checking login status */}
@@ -70,6 +71,7 @@ function App() {
           <Route path="/buy-and-sell" element={<Shop />} />
           <Route path="/placeads" element={<PlaceAd />} />
           <Route path="/myads" element={<MyAds />} />
+          <Route path="/aboutus" element={<About />} />
           {/* Pass userId and userName to Profile component */}
           <Route path="/profile" element={<Profile userId={userId} userName={userName} userEmail={userEmail} />} />  
         </Routes>

@@ -6,9 +6,9 @@ function PlaceAd() {
     const [category, setCategory] = useState('');
     const [location, setLocation] = useState('');
     const [photo, setPhoto] = useState(null);
-    const [productName, setProductName] = useState('');  // New field: Product Name
-    const [description, setDescription] = useState('');  // New field: Description
-    const [price, setPrice] = useState('');  // New field: Price
+    const [productName, setProductName] = useState('');  
+    const [description, setDescription] = useState('');  
+    const [price, setPrice] = useState('');  
     const navigate = useNavigate();
 
     // Check if user is logged in
